@@ -1,0 +1,437 @@
+{
+	"description": "Forge app generation configuration",
+	"additionalProperties": true,
+	"properties": {
+		"name": {
+			"required": true,
+			"type": "string"
+		},
+		"author": {
+			"required": true,
+			"type": "string"
+		},
+		"description": {
+			"required": false,
+			"type": "string"
+		},
+		"uuid": {
+			"required": true,
+			"type": "string",
+			"description": "Forge-supplied unique ID for this app"
+		},
+		"platform_version": {
+			"required": true, 
+			"type": "string", 
+			"description": "the Forge platform level this application should be built against"
+		},
+		"version": {
+			"required": true,
+			"type": "string",
+			"pattern": "^\\d{,5}(\\.\\d{,5})?(\\.\\d{,5})?$"
+		},
+		"package_names": {
+			"required": false,
+			"type": "object",
+			"description": "override the generated package names in your apps",
+			"properties": {
+				"android": {
+					"required": false,
+					"type": "string"
+				},
+				"ios": {
+					"required": false,
+					"type": "string"
+				}
+			}
+		},
+		"activations": {
+			"required": true, 
+			"type": "array", 
+			"description": "specify when the application should activate, and what files to load",
+			"items": {
+				"type": "object", 
+				"description": "an individual activation declaration", 
+				"properties": {
+					"patterns": {
+						"required": true, 
+						"type": "array", 
+						"description": "match patterns, defining URLs to activate on",
+						"items": {
+							"type": "string"
+						}
+					}, 
+					"scripts": {
+						"required": true, 
+						"type": "array", 
+						"description": "JavaScript files to embed",
+						"items": {
+							"type": "string"
+						}
+					}, 
+					"styles": {
+						"required": true, 
+						"type": "array", 
+						"description": "CSS files to embed",
+						"items": {
+							"type": "string"
+						}
+					},
+					"run_at": {
+						"required": false,
+						"type": "string",
+						"description": "When the activated scripts should be run",
+						"enum": ["start", "ready", "end"]
+					},
+					"all_frames": {
+						"required": false,
+						"type": "boolean",
+						"description": "Whether or not the activation will run on all frames on the page"
+					}
+				}
+			}
+		}, 
+		"background_files": {
+			"required": false, 
+			"type": "array", 
+			"description": "files which contain code to run as daemons", 
+			"items": {
+				"type": "string"
+			}
+		}, 
+		"libs": {
+			"required": false, 
+			"type": "object", 
+			"description": "pre-packaged Forge libraries to include with the application", 
+			"properties": {
+				"gmail": {
+					"required": false,
+					"type": "object"
+				},
+				"jquery": {
+					"required": false,
+					"type": "object",
+					"properties": {
+						"version": {
+							"required": true,
+							"type": "string",
+							"enum": ["1.4.3", "1.5.2", "1.6.4", "1.7.1"]
+						}
+					}
+				}
+			}
+		},
+		"browser_action": {
+			"required": false, 
+			"type": "object", 
+			"description": "specifies how clickable icons should be created in the underlying interface", 
+			"properties": {
+				"default_icons": {
+					"required": false, 
+					"type": "object"
+				}, 
+				"default_title": {
+					"required": false, 
+					"type": "string"
+				}, 
+				"default_icon": {
+					"required": false, 
+					"type": "string"
+				}, 
+				"default_popup": {
+					"required": false, 
+					"type": "string"
+				}
+			}
+		}, 
+		"permissions": {
+			"required": false, 
+			"type": "array", 
+			"description": "privileged actions the application will request permissions for from the user", 
+			"items": {
+				"type": "string"
+			}
+		},
+		"icons": {
+			"required": false, 
+			"type": "object", 
+			"description": "icons to display that represent the application itself", 
+			"properties": {
+				"16": {
+					"required": false,
+					"type": "string"
+				},
+				"32": {
+					"required": false,
+					"type": "string"
+				},
+				"36": {
+					"required": false,
+					"type": "string"
+				},
+				"48": {
+					"required": false,
+					"type": "string"
+				},
+				"57": {
+					"required": false,
+					"type": "string"
+				},
+				"64": {
+					"required": false,
+					"type": "string"
+				},
+				"72": {
+					"required": false,
+					"type": "string"
+				},
+				"114": {
+					"required": false,
+					"type": "string"
+				},
+				"128": {
+					"required": false, 
+					"type": "string"
+				},
+				"512": {
+					"required": false,
+					"type": "string"
+				},
+				"android": {
+					"required": false,
+					"type": "object",
+					"description": "icons for Android",
+					"properties": {
+						"36": {
+							"required": true,
+							"type": "string"
+						},
+						"48": {
+							"required": true,
+							"type": "string"
+						},
+						"72": {
+							"required": true,
+							"type": "string"
+						}
+					}
+				},
+				"chrome": {
+					"required": false,
+					"type": "object",
+					"description": "icons for Chrome",
+					"properties": {
+						"16": {
+							"required": true,
+							"type": "string"
+						},
+						"48": {
+							"required": true,
+							"type": "string"
+						},
+						"128": {
+							"required": true,
+							"type": "string"
+						}
+					}
+				},
+				"firefox": {
+					"required": false,
+					"type": "object",
+					"description": "icons for Firefox",
+					"properties": {
+						"32": {
+							"required": true,
+							"type": "string"
+						},
+						"64": {
+							"required": true,
+							"type": "string"
+						}
+					}
+				},
+				"ios": {
+					"required": false,
+					"type": "object",
+					"description": "icons for iOS",
+					"properties": {
+						"57": {
+							"required": true,
+							"type": "string"
+						},
+						"72": {
+							"required": true,
+							"type": "string"
+						},
+						"114": {
+							"required": true,
+							"type": "string"
+						},
+						"512": {
+							"required": false,
+							"type": "string"
+						}
+					}
+				},
+				"safari": {
+					"required": false,
+					"type": "object",
+					"description": "icons for Safari",
+					"properties": {
+						"32": {
+							"required": true,
+							"type": "string"
+						},
+						"48": {
+							"required": true,
+							"type": "string"
+						},
+						"64": {
+							"required": true,
+							"type": "string"
+						}
+					}
+				}
+			}
+		},
+		"launch_images": {
+			"required": false, 
+			"type": "object", 
+			"description": "images to display on launch", 
+			"properties": {
+				"iphone": {
+					"required": false,
+					"type": "string",
+					"dependencies": ["iphone-retina", "ipad", "ipad-landscape"]
+				},
+				"iphone-retina": {
+					"required": false,
+					"type": "string",
+					"dependencies": ["iphone", "ipad", "ipad-landscape"]
+				},
+				"ipad": {
+					"required": false,
+					"type": "string",
+					"dependencies": ["iphone", "iphone-retina", "ipad-landscape"]
+				},
+				"ipad-landscape": {
+					"required": false,
+					"type": "string",
+					"dependencies": ["iphone", "iphone-retina", "ipad"]
+				},
+				"android": {
+					"required": false,
+					"type": "string",
+					"dependencies": "android-landscape"
+				},
+				"android-landscape": {
+					"required": false,
+					"type": "string",
+					"dependencies": "android"
+				}
+			}
+		},
+		"update_url": {
+			"required": false, 
+			"type": "object", 
+			"description": "URLs to check for application updates from", 
+			"properties": {
+				"chrome": {
+					"required": false, 
+					"type": "string"
+				}, 
+				"firefox": {
+					"required": false, 
+					"type": "string"
+				}
+			}
+		},
+		"logging": {
+			"required": false,
+			"type": "object",
+			"description": "configuration of the logging in your app",
+			"properties": {
+				"level": {
+					"required": false,
+					"type": "string",
+					"enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+				}
+			}
+		},
+		"parameters": {
+			"required": false,
+			"type": "object",
+			"description": "arbitrary extra configuration which will be available as forge.config.parameters in your JavaScript"
+		},
+		"homepage": {
+			"required": false,
+			"type": "string",
+			"description": "your website, or location of more information about this app"
+		},
+		"orientations": {
+			"required": false,
+			"type": "object",
+			"description": "supported orientations for mobile applications",
+			"properties": {
+				"default": {
+					"required": false,
+					"type": "string",
+					"enum": ["portrait", "landscape", "any"]
+				},
+				"iphone": {
+					"required": false,
+					"type": "string",
+					"enum": ["portrait", "landscape", "any"]
+				},
+				"ipad": {
+					"required": false,
+					"type": "string",
+					"enum": ["portrait", "landscape", "any"]
+				},
+				"android": {
+					"required": false,
+					"type": "string",
+					"enum": ["portrait", "landscape", "any"]
+				}
+			}
+		},
+		"partners": {
+			"required": false,
+			"description": "Configuration for 3rd party integration",
+			"type": "object",
+			"properties": {
+				"parse": {
+					"required": false,
+					"description": "Parse.com config",
+					"type": "object",
+					"properties": {
+						"applicationId": {
+							"required": true,
+							"description": "Application ID from parse.com",
+							"type": "string"
+						},
+						"clientKey": {
+							"required": true,
+							"description": "Client key from parse.com",
+							"type": "string"
+						}
+					}
+				}
+			}
+		},
+		"modules": {
+			"required": false,
+			"description": "Per module enabling and configuration",
+			"type": "object",
+			"properties": {
+				"topbar": {
+					"required": false,
+					"type": "boolean"
+				},
+				"tabbar": {
+					"required": false,
+					"type": "boolean"
+				}
+			}
+		}
+	}
+}

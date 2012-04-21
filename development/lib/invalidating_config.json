@@ -1,0 +1,22 @@
+{
+	"uuid": true,
+	"author": true,
+	"description": true,
+	"platform_version": true,
+	"version": true,
+	"package_names": true,
+	"activations": true,
+	"background_files": true,
+	"libs": true,
+	"browser_action": true,
+	"permissions": true,
+	"update_url": true,
+	"logging": true,
+	"parameters": true,
+	"homepage": true,
+	"orientations": true,
+	"partners": true,
+	"modules": true,
+	"launch_images": true
+}
+
